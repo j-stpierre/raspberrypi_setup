@@ -1,0 +1,13 @@
+---
+- name: Upgrade the OS (apt-get dist-upgrade)
+  apt:
+    upgrade: dist
+    cache_valid_time: 432000
+  become: yes
+
+- name: Update packages
+  apt:
+    update_cache: yes
+    force_apt_get: yes 
+    cache_valid_time: 432000
+  become: yes
