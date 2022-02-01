@@ -3,3 +3,5 @@
   remote_user: pi
   roles:
     - common
+    - k8s
+  become: yes

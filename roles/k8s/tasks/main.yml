@@ -1,0 +1,41 @@
+---
+- name: Install a list of packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  loop:
+    - libffi-dev
+    - libssl-dev
+    - python3
+    - python3-pip
+- name: Remove python-configparser package
+  apt:
+    name: python-configparser
+    state: absent
+- name: get docker convenience script
+  shell: curl -fsSL https://get.docker.com -o get-docker.sh
+  args:
+    creates: /home/pi/get-docker.sh
+- name: install docker
+  shell: sh /home/pi/get-docker.sh
+  args:
+    creates: /usr/bin/docker
+- name: make pi user execute docker commands
+  shell: usermod -aG docker pi
+
+- name: Ensure that docker is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+
+
+
+# Add user to docker user group
+  # sudo usermod -aG docker MYUSER
+# add cgroup config to nano /boot/cmdline.txt
+  # cgroup_enable=memory cgroup_memory=1
+# Install k3s
+  # sudo curl -sfL https://get.k3s.io | sh -s - --docker
+# Enable service for restarts and crashes
