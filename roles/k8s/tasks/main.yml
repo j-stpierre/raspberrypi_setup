@@ -15,13 +15,13 @@
 - name: get docker convenience script
   shell: curl -fsSL https://get.docker.com -o get-docker.sh
   args:
-    creates: /home/pi/get-docker.sh
+    creates: /home/ubuntu/get-docker.sh
 - name: install docker
-  shell: sh /home/pi/get-docker.sh
+  shell: sh /home/ubuntu/get-docker.sh
   args:
     creates: /usr/bin/docker
-- name: make pi user execute docker commands
-  shell: usermod -aG docker pi
+- name: make ubuntu user execute docker commands
+  shell: usermod -aG docker ubuntu
 
 - name: Ensure that docker is started and enabled
   service:

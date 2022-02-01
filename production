@@ -1,2 +1,2 @@
 [pis]
-central-pi ansible_host=192.168.2.107
+central-pi ansible_host=192.168.2.110
