@@ -1,7 +1,7 @@
 ---
-- hosts: all
-  remote_user: ubuntu
-  roles:
-    - common
-    - k8s
-  become: yes
+- name: Install Custom Components
+  import_playbook: custom.yml
+  
+- name: Install K3s
+  import_playbook: k3s-ansible/site.yml
+
